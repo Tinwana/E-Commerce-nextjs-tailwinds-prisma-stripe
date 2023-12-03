@@ -1,5 +1,3 @@
-import { $Enums, User } from "@prisma/client";
-
 export type SafeUser = {
   createAt: string;
   updatedAt: string;
@@ -10,5 +8,4 @@ export type SafeUser = {
   image: string | null;
   hashedPassword: string | null;
   createdAt: Date;
-  role: $Enums.Role;
 } | null;
