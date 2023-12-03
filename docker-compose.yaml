@@ -1,0 +1,44 @@
+version: '1'
+services:
+  # mongodb:
+  #   image: mongo
+  #   volumes:
+  #     - mongodb_data:/data/db
+  #   environment:
+  #     MONGO_INITDB_ROOT_USERNAME: "hoaitin"
+  #     MONGO_INITDB_ROOT_PASSWORD: "844466tin"
+  #   networks:
+  #     - backend
+  #   ports:
+  #     - "27017:27017"
+  api:
+    build: ./server
+    container_name: api-server
+    ports:
+      - '3001:3001'
+    volumes:
+      - ./server:/app
+      - /app/node_modules
+    networks:
+      - tinwana
+    environment:
+      - PORT=
+      - DATABASE_URL=
+      - JWT_SECRET=
+  client:
+    build: ./client
+    container_name: frontend
+    ports:
+      - '3000:3000'
+    volumes:
+      - ./client:/app
+      - /app/node_modules
+    networks:
+      - tinwana
+
+networks:
+  tinwana:
+    driver: bridge
+
+# volumes:
+#   mongodb_data:

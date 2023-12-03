@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "concurrently": "^8.2.2"
+  },
+  "scripts": {
+    "create": "concurrently \"cd ./server && npm install\" \"cd ./client && npm install\"",
+    "all": "concurrently \"cd ./server && npm run dev\" \"cd ./client && npm run dev\""
+  }
+}
