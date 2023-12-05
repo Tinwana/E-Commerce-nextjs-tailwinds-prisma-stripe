@@ -15,8 +15,6 @@ interface UserMenuProps {
 }
 
 const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
-  console.log(currentUser);
-
   // variables
   const router = useRouter();
   const [isOpen, setIsOpen] = useState<boolean>(false);

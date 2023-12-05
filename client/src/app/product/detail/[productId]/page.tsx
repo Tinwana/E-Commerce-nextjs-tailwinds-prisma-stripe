@@ -20,7 +20,7 @@ export async function generateMetadata() {
 
 export async function generateStaticParams() {
   return products?.map((product) => ({
-    listingId: product.id,
+    productId: product.id,
   }));
 }
 export const dynamic = "force-dynamic";
