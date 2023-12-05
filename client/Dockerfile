@@ -12,13 +12,14 @@ WORKDIR /usr/src/app
 COPY package*.json ./
 
 # Install dependencies
-RUN NODE_ENV=development npm i
+RUN NODE_ENV=development npm install
 
 # Copy local code to the container image.
 COPY . .
 
 # Build the Next.js application.
 RUN npm run build
+RUN npx prisma db push /usr/src/app/src
 
 # Step 2: Serve the Next.js application from Node.js server
 FROM node:18 as runner
@@ -26,6 +27,7 @@ FROM node:18 as runner
 WORKDIR /usr/src/app
 
 # Copy the built app from the builder stage.
+COPY --from=builder /usr/src/app/prisma ./prisma
 COPY --from=builder /usr/src/app/public ./public
 COPY --from=builder /usr/src/app/.next ./.next
 COPY --from=builder /usr/src/app/node_modules ./node_modules

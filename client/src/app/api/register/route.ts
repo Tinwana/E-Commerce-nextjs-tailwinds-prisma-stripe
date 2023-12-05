@@ -1,3 +1,4 @@
+"use client";
 import prisma from "@/lib/prismaDb";
 import { NextResponse } from "next/server";
 import bcrypt from "bcryptjs";
