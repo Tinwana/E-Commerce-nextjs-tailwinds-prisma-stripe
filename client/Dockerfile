@@ -20,6 +20,7 @@ COPY . .
 # Build the Next.js application.
 RUN npm run build
 RUN npx prisma db push /usr/src/app/src
+RUN npx prisma generate
 
 # Step 2: Serve the Next.js application from Node.js server
 FROM node:18 as runner
