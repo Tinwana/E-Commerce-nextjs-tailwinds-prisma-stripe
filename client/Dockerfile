@@ -12,7 +12,7 @@ WORKDIR /usr/src/app
 COPY package*.json ./
 
 # Install dependencies
-RUN npm install
+RUN NODE_ENV=development npm i
 
 # Copy local code to the container image.
 COPY . .
