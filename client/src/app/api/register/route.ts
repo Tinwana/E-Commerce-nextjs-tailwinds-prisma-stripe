@@ -1,3 +1,4 @@
+"use client";
 import prisma from "@/lib/prismaDb";
 import { NextResponse } from "next/server";
 import bcrypt from "bcryptjs";
@@ -26,15 +27,21 @@ export async function POST(request: Request) {
         data: user,
       });
     } else {
-      return NextResponse.json({
-        status: "error",
-        message: "user already exists",
-      });
+      return NextResponse.json(
+        {
+          status: "error",
+          message: "user already exists",
+        },
+        { status: 404 }
+      );
     }
   } catch (error) {
-    return NextResponse.json({
-      status: "error",
-      message: "catches error" + error,
-    });
+    return NextResponse.json(
+      {
+        status: "error",
+        message: "catches error" + error,
+      },
+      { status: 401 }
+    );
   }
 }
