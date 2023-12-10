@@ -8,10 +8,10 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string, {
 });
 const calculateOrderAmount = (item: CartProductType[]) => {
   const totalPrice = item.reduce((acc, item) => {
-    const itemTotal = item.price + item.quantity;
+    const itemTotal = item.price * item.quantity;
     return acc + itemTotal;
   }, 0);
-  return totalPrice;
+  return Number(totalPrice.toFixed(2));
 };
 
 export async function POST(request: Request) {
@@ -28,6 +28,7 @@ export async function POST(request: Request) {
   const body = await request.json();
   const { items, payment_intent_id } = body;
   const total = calculateOrderAmount(items) * 100;
+
   const orderData = {
     user: {
       connect: {
@@ -52,7 +53,7 @@ export async function POST(request: Request) {
         { amount: total }
       );
 
-      const { existing_order, update_order } = await Promise.all([
+      const [existing_order, update_order] = await Promise.all([
         prisma.order.findFirst({
           where: { paymentIntentId: payment_intent_id },
         }),

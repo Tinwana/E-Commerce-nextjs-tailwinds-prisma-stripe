@@ -45,12 +45,18 @@ const CartClient: React.FC = () => {
         <div className="text-sm flex flex-col gap-1 items-start">
           <div className="flex justify-between w-full text-base font-semibold">
             <span className="">Subtotal</span>
-            <span className=""> {cartTotalAmount.toFixed(2)}</span>
+            <span className=""> {cartTotalAmount}</span>
           </div>
           <p className="text-slate-500">
             Taxes and shipping calculate at checkout
           </p>
-          <Button label="Check Out" onClick={() => {}} />
+          {/* <Button label="Check Out" onClick={() => {}} /> */}
+          <Link
+            className="disabled:opacity-70 disabled:cursor-not-allowed rounded-md hover:opacity-75 transition w-full border-slate-700 flex items-center justify-center gap-2 bg-slate-700 text-white text-md px-3 py-4 font-semibold border-2"
+            href="/checkout"
+          >
+            Check Out
+          </Link>
           <Link
             href="/"
             className="flex items-center text-slate-500 gap-1 mt-2"
