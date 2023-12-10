@@ -109,7 +109,7 @@ export const products = [
         color: "Black",
         colorCode: "#000000",
         image:
-          "https://firebasestorage.googleapis.com/v0/b/e-shop-vid.appspot.com/o/products%2Flogitech-graphite.png?alt=media&token=d07334d8-ab2b-4648-a38b-2a062a1a49bc",
+          "https://resource.logitech.com/w_800,c_lpad,ar_4:3,q_auto,f_auto,dpr_1.0/d_transparent.gif/content/dam/logitech/en/products/keyboards/mx-keys-for-business/gallery/mx-keys-business-keyboard-gallery-us-graphite-1.png?v=1",
       },
     ],
     reviews: [
@@ -368,7 +368,7 @@ export const products = [
         color: "Graphite",
         colorCode: " #383838",
         image:
-          "https://firebasestorage.googleapis.com/v0/b/e-shop-vid.appspot.com/o/products%2Flogitech-graphite.png?alt=media&token=d07334d8-ab2b-4648-a38b-2a062a1a49bc",
+          "https://resource.logitech.com/w_800,c_lpad,ar_4:3,q_auto,f_auto,dpr_1.0/d_transparent.gif/content/dam/logitech/en/products/keyboards/mx-keys-for-business/gallery/mx-keys-business-keyboard-gallery-us-graphite-1.png?v=1",
       },
     ],
     reviews: [],

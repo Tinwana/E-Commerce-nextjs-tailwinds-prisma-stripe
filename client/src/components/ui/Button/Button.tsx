@@ -11,6 +11,8 @@ interface ButtonProps {
   type?: "button" | "submit" | "reset" | undefined;
   icon?: IconType;
   onClick?: (e?: React.MouseEvent<HTMLButtonElement>) => void;
+  onSubmit?: (e: React.FormEvent<HTMLButtonElement>) => Promise<void>;
+  id?: string;
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -22,6 +24,8 @@ const Button: React.FC<ButtonProps> = ({
   outline,
   type = "button",
   small,
+  onSubmit,
+  id,
 }) => {
   return (
     <button
@@ -35,6 +39,8 @@ const Button: React.FC<ButtonProps> = ({
       disabled={disable}
       onClick={onClick}
       type={type}
+      onSubmit={onSubmit}
+      id={id}
     >
       {Icon && <Icon size={24} />}
       {label}
