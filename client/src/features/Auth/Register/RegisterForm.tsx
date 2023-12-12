@@ -68,7 +68,7 @@ const RegisterForm: React.FC<RegisterProps> = ({ currentUser }) => {
     }
   }, []);
   return (
-    <>
+    <form className="flex flex-col w-full items-center gap-4">
       <Button
         outline
         label="Sign in with Google"
@@ -125,7 +125,7 @@ const RegisterForm: React.FC<RegisterProps> = ({ currentUser }) => {
           <span>{errors.email && "-"} Invalid password!</span>
         )}
       </p>
-    </>
+    </form>
   );
 };
 

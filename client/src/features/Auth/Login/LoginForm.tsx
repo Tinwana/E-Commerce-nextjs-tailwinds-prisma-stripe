@@ -60,7 +60,7 @@ const LoginForm: React.FC<LoginProps> = ({ currentUser }) => {
   }, []);
 
   return (
-    <>
+    <form className="flex flex-col w-full items-center gap-4">
       <Button
         outline
         label="Continue with Google"
@@ -107,7 +107,7 @@ const LoginForm: React.FC<LoginProps> = ({ currentUser }) => {
           <span>{errors.email && "-"} Invalid password!</span>
         )}
       </p>
-    </>
+    </form>
   );
 };
 
