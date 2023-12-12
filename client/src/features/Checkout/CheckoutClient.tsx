@@ -23,10 +23,13 @@ const CheckoutClient: FC = () => {
   const { paymentIntent, handleSetPayMentIntent, cartProducts } = useCart();
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<boolean>(false);
-  const [clientSecret, setClientSecret] = useState("");
+  const [clientSecret, setClientSecret] = useState<string | undefined>("");
   const [paymentSuccess, setPaymentSuccess] = useState<boolean>(false);
 
   useEffect(() => {
+    if (paymentSuccess) {
+      setClientSecret(undefined);
+    }
     if (cartProducts) {
       setError(false);
       setLoading(true);
@@ -71,30 +74,37 @@ const CheckoutClient: FC = () => {
   }, []);
   return (
     <section className="w-full flex flex-col items-center justify-center">
-      {clientSecret && (
-        <Elements options={options} stripe={stripePromise}>
-          <CheckoutForm
-            clientSecret={clientSecret}
-            handleSetPaymentSuccess={handlePaymentSuccess}
-          />
-        </Elements>
-      )}
-      {loading && <CircularProgress className="text-center" />}
-      {error && (
-        <div className="text-center text-rose-500">Something went wrong!</div>
-      )}
-      {paymentSuccess && (
-        <div className="flex items-center flex-col gap-4">
-          <div className="text-teal-500 text-center ">Payment Success</div>
-          <div className="max-w-[220px] w-full">
-            <Button
-              label="View your orders"
-              onClick={() => {
-                router.push("/order");
-              }}
-            />
-          </div>
-        </div>
+      {loading && !clientSecret ? (
+        <CircularProgress className="text-center" />
+      ) : (
+        <>
+          {clientSecret && (
+            <Elements options={options} stripe={stripePromise}>
+              <CheckoutForm
+                clientSecret={clientSecret}
+                handleSetPaymentSuccess={handlePaymentSuccess}
+              />
+            </Elements>
+          )}
+          {error && (
+            <div className="text-center text-rose-500">
+              Something went wrong!
+            </div>
+          )}
+          {paymentSuccess && (
+            <div className="flex items-center flex-col gap-4">
+              <div className="text-teal-500 text-center ">Payment Success</div>
+              <div className="max-w-[220px] w-full">
+                <Button
+                  label="View your orders"
+                  onClick={() => {
+                    router.push("/order");
+                  }}
+                />
+              </div>
+            </div>
+          )}
+        </>
       )}
     </section>
   );
